@@ -1,7 +1,5 @@
 <script setup lang="ts">
 
-import HomeView from './views/HomeView.vue'
-
 </script>
 
 <template>
@@ -35,8 +33,6 @@ import HomeView from './views/HomeView.vue'
   </div>
 </nav>
 
-
-  <HomeView />
 
   <!-- CONTENT -->
 
