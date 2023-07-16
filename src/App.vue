@@ -49,7 +49,7 @@
     <div>Developed for a Technical Test</div>
     |
     <div>
-      <a href="asdasd">
+      <a href="https://github.com/Lispaum/vue-pokedex">
       Github Repository
       </a>
     </div>
