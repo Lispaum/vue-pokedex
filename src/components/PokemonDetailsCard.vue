@@ -2,8 +2,8 @@
 
 import { Pokemon } from '../views/HomeView.vue';
 
-const {pokemon, loading} = defineProps<{
-    pokemon: Pokemon,
+const { pokemon, loading } = defineProps<{
+    pokemon: Pokemon | null,
     loading: Boolean
 }>()
 
@@ -17,24 +17,29 @@ const {pokemon, loading} = defineProps<{
     :class="loading ? '' : 'animate__animated animate__flipInY'">
 
         <img 
-        v-if="pokemon?.name"
-
-        :src="pokemon.front_default"
+        :src="pokemon?.front_default ?? 'src/assets/egg_pokemon.svg'"
         class="card-img-top pt-2"
-        :alt="pokemon.name"
-        >
-
-        <img 
-        v-else
-        src="../assets/egg_pokemon.svg"
-        class="card-img-top pt-2"
-        alt="??"
+        :alt="pokemon?.name ?? '???'"
         >
 
         <div class="card-body">
             <h5 class="card-title text-center">{{ pokemon?.name ?? '???' }}</h5>
             <h5 class="card-title text-center">{{ pokemon?.type ?? '???' }}</h5>
             <hr>
+
+            <div class="row">
+            <section class="col">
+                <strong>XP: </strong>
+                <span>{{ pokemon?.base_experience}}</span>
+
+            </section>
+
+            <section class="col">
+                <strong>HP: </strong>
+                <span>{{ pokemon?.hp }}</span>
+
+            </section>
+        </div>  
 
         <div class="row">
             <section class="col">
@@ -50,19 +55,7 @@ const {pokemon, loading} = defineProps<{
             </section>
 
         </div>   
-        <div class="row">
-            <section class="col">
-                <strong>XP: </strong>
-                <span>{{ pokemon?.base_experience}}</span>
 
-            </section>
-
-            <section class="col">
-                <strong>Height: </strong>
-                <span>{{ pokemon?.height }}</span>
-
-            </section>
-        </div>  
         
         
         </div>
@@ -101,7 +94,9 @@ const {pokemon, loading} = defineProps<{
     }
 
 
-    
+    .row + .row {
+        display: none;
+    }
     
 }
 

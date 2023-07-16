@@ -9,13 +9,15 @@ type PokemonLink = {
   url: string;
 };
 
-export type Pokemon = null | {
+export type Pokemon = {
   name: string;
   type: String,
+  hp: number;
   height: number;
   weight: number;
   base_experience: number;
   front_default: string;
+
 };
 
 const pokemons = ref<PokemonLink[]>([]);
@@ -48,14 +50,16 @@ const viewPokemon = async (pokemon: PokemonLink) => {
     loading.value = true;
     const response = await fetch(pokemon.url);
 
-    const { name, base_experience, height, sprites:{ front_default}, types, weight } = await response.json();
+    const { name, base_experience, height, stats, sprites:{ front_default}, types, weight } = await response.json();
 
-    const type = types[0].type.name
+    const hp: number = stats[0].base_stat
+    const type: string = types[0].type.name
 
     console.log(type)
     selectedPokemon.value = {
       name,
       base_experience,
+      hp,
       height,
       weight,
       front_default,
